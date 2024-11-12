@@ -1,0 +1,29 @@
+<div class="container my-5">
+  <h1 class="mb-4 text-primary">My Articles</h1>
+
+  <ul class="list-group">
+    <% @articles.each do |article| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <%= form_with model: article, url: article_path(article), method: :patch, local: true do |f| %>
+            <div class="form-check d-inline">
+              <%= article.title %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to edit_article_path(article), class: "btn btn-sm btn-outline-primary me-2", title: "Edit" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+          <%= link_to article_path(article), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger", title: "Delete" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="mt-4">
+    <%= link_to "+ Add new Article", new_article_path, class: "btn btn-primary" %>
+  </div>
+</div>
